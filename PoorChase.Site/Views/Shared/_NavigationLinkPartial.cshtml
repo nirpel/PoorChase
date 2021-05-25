@@ -1,0 +1,19 @@
+﻿@model NavLinkViewModel
+
+<li class="nav-item border-top">
+    @{ if (Model.CurrentViewName == Model.RequiredViewName)
+        {
+            <span class="nav-link text-info font-weight-bold">
+                <i class="fas @Model.IconName mr-2"></i>
+                @Model.LinkTitle
+            </span>
+        }
+        else
+        {
+            <a class="nav-link text-dark" asp-controller=@Model.Controller asp-action=@Model.Action>
+                <i class="fas @Model.IconName mr-2"></i>
+                @Model.LinkTitle
+            </a>
+        }
+    }
+</li>

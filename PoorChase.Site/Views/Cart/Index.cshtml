@@ -1,0 +1,51 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Cart";
+    ViewData["MasterType"] = "Shopping Cart";
+    var totalPrice = ViewData["IsUser"] == null ? (double)Model.Sum(x => x.Price) : (double)Model.Sum(x => x.Price) * 0.9;
+
+    if (Model.Count > 0)
+    {
+        <div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-hover shadow">
+                        <tbody>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr class="mb-3">
+                                    <partial name="_CartProductPartial" model="@Model[i]" />
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <div class="border rounded card-bg p-3 w-50">
+                        <div class="d-flex justify-content-between border-bottom border-dark pb-1">
+                            <h4>Total:</h4>
+                            <h4>$@totalPrice.ToString("0.00")</h4>
+                        </div>
+                        <form asp-controller="Cart" asp-action="Buy" method="post">
+                            <input type="hidden" value="true" />
+                            <button type="submit" class="btn btn-primary w-100 mt-3">Place Order</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h4>Your Cart is Empty.</h4>
+        var partialModel = new ModalViewModel
+        {
+            Title = "Congratulations!",
+            Content = "Your Order has been placed successfully!"
+        };
+        if (TempData["PopUp"] != null)
+        {
+            <partial name="_ModalPartial" model="@partialModel" />
+        }
+    }
+}

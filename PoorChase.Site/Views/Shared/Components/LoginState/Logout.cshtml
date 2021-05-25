@@ -1,0 +1,12 @@
+﻿@model LogoutViewModel
+    <form asp-controller="User" asp-action="Logout" method="post">
+        <div>
+            <span>Good @Model.DayState, <strong>@Model.FirstName!</strong></span>
+        </div>
+        <div class="mt-4">
+            <button class="btn btn-outline-dark btn-sm" type="submit">
+                Logout
+                <img class="ml-2" src="~/images/others/logout-small.png" />
+            </button>
+        </div>
+    </form>

@@ -1,0 +1,29 @@
+﻿@model LoginViewModel
+<form method="post" asp-controller="User" asp-action="Login">
+    <h5 class="text-center mb-4">Login</h5>
+    <div class="input-group mb-3 d-block">
+        <div>
+            <span class="text-danger d-inline" asp-validation-for="LoginUserName"></span>
+        </div>
+        <div>
+            <input id="login_username" asp-for="LoginUserName" type="text" class="form-control shadow" placeholder="User Name:" aria-describedby="basic-addon2">
+        </div>
+    </div>
+    <div class="input-group mb-4 d-block">
+        <div>
+            <span class="text-danger d-inline" asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <input id="login_password" asp-for="Password" type="password" class="form-control shadow" placeholder="Password:" aria-describedby="basic-addon2">
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-secondary btn-sm d-block w-50 shadow">Login</button>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-link btn-sm" asp-controller="PersonalDetails" asp-action="Index">Create new Account</a>
+    </div>
+    <div>
+        <p id="error_message" class="text-danger">@TempData["ErrorMessage"]</p>
+    </div>
+</form>

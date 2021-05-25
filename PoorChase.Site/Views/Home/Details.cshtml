@@ -1,0 +1,57 @@
+﻿@model Product
+@{
+    ViewData["Title"] = $"{Model.Title} details";
+    ViewData["MasterType"] = $"{Model.Title}";
+}
+
+<div class="container w-75 mt-4">
+    <div class="row">
+        <div class="col">
+            <div class="d-block rounded border border-dark p-3 card-bg shadow">
+                <h2>@Model.Title</h2>
+                <span>Published: @Model.Date.ToShortDateString()</span>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <div class="d-block rounded-top border border-dark p-3 site-bg shadow">
+                <partial name="_CarouselPartial" model="@Model" />
+            </div>
+            <div class="d-block rounded-bottom border border-top-0 border-dark p-3 card-bg shadow">
+                <div class="d-flex justify-content-between">
+                    <h4 class="mt-1">Price: $@Model.Price.ToString("0.00")</h4>
+                    @if (Model.State == ProductState.Available)
+                    {
+                        <form method="post" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id">
+                            <button type="submit" class="btn btn-success">Add to Cart</button>
+                        </form>
+                    }
+                    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Return</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-block w-100 h-100 rounded border border-dark p-3 site-bg shadow">
+                <div class="d-block rounded border border-dark pt-2 pl-2 card-bg shadow">
+                    <h5>Description:</h5>
+                </div>
+                <p class="mt-1">@Model.ShortDescription</p>
+                <div class="d-block rounded border border-dark pt-2 pl-2 card-bg shadow">
+                    <h5>More Information:</h5>
+                </div>
+                <p class="mt-1">@Model.LongDescription</p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <div class="d-block rounded border border-dark p-3 site-bg shadow">
+                <span>
+                    <strong>Contact Details:</strong>
+                    @Model.Owner.FirstName @Model.Owner.LastName, e-Mail: @Model.Owner.Email
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

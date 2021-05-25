@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    ViewData["MasterType"] = "Home";
+}
+@model List<Product>
+
+<div class="form-row align-items-center">
+    <div class="col-auto">
+        <label for="#select-order">Order by: </label>
+    </div>
+    <div class="col-auto">
+        <select id="select-order" class="form-control mb-2 shadow">
+            <option value="date">Date</option>
+            <option value="title">Title</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <partial name="_CardPartial" model="@item" />
+    }
+</div>

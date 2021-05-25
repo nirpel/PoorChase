@@ -1,0 +1,20 @@
+﻿@model bool
+@{
+    string currentViewName = (string)ViewData["View Name"];
+    var homeModel = new NavLinkViewModel(currentViewName, "Home", "fa-home", "Home", "Home", "Index");
+    var personalDetailsModel = new NavLinkViewModel(currentViewName, "Personal Details", "fa-address-card", "Personal Details", "PersonalDetails", "Index");
+    var aboutModel = new NavLinkViewModel(currentViewName, "About", "fa-question-circle", "About Us", "Home", "About");
+    var cartModel = new NavLinkViewModel(currentViewName, "Cart", "fa-shopping-cart", "Shopping Cart", "Cart", "Index");
+    var listProductModel = new NavLinkViewModel(currentViewName, "Publish", "fa-plus ml-1", "List a Product", "Product", "Index");
+}
+<h5 class="text-center mb-4">Site Map</h5>
+<ul class="navbar-nav flex-grow-1">
+    <partial name="_NavigationLinkPartial" model="@homeModel" />
+    <partial name="_NavigationLinkPartial" model="@personalDetailsModel" />
+    <partial name="_NavigationLinkPartial" model="@aboutModel" />
+    <partial name="_NavigationLinkPartial" model="@cartModel" />
+    @if (Model)
+    {
+        <partial name="_NavigationLinkPartial" model="@listProductModel" />
+    }
+</ul>

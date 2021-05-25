@@ -1,0 +1,20 @@
+﻿@model Product
+@{
+    var fileName = System.IO.Path.GetFileName(Model.PicturePath1) ?? "no-img.png";
+}
+<td class="align-middle">
+    <img src="~/images/products/@fileName" class="cart-image" />
+</td>
+<td class="align-middle">
+    <a asp-controller="Home" asp-action="Details" asp-route-id="@Model.Id" class="nav-link text-dark font-weight-bolder">@Model.Title</a>
+</td>
+<td class="align-middle">
+    $@Model.Price
+</td>
+<td class="align-middle">
+    <form asp-action="RemoveFromCart" asp-controller="Cart" asp-route-id="@Model.Id" method="post">
+        <button type="submit" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </form>
+</td>

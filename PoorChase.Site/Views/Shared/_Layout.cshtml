@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PoorChase</title>
+    <script src="https://kit.fontawesome.com/de2a18c675.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="~/images/icon/logo.png" />
+    <link rel="stylesheet" href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/startbootstrap-simple-sidebar@5.1.2/css/simple-sidebar.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/extensions.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-light site-bg pb-3">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/images/icon/logo-dark.png" />
+                <span class="site-logo align-bottom">
+                    PoorChase
+                    @if (!string.IsNullOrWhiteSpace(ViewData["MasterType"].ToString()))
+                    {
+                        <span class="site-mastertype"> - @ViewData["MasterType"]</span>
+                    }
+                </span>
+            </a>
+        </nav>
+    </header>
+    <div class="d-flex" id="wrapper">
+        <nav class="site-bg border-right w-25 pb-4 pr-4 pl-4" id="sidebar-wrapper">
+            <div class="border border-dark rounded p-4 bg-light shadow">
+                @await Component.InvokeAsync("LoginState")
+            </div>
+            <div class="border border-dark rounded p-4 bg-light mt-4 shadow">
+                @await Component.InvokeAsync("Menu", ViewData["Title"].ToString())
+            </div>
+        </nav>
+        <div class="border border-dark rounded bg-light container-fluid p-4 shadow">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="~/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

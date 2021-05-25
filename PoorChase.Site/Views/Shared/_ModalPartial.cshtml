@@ -1,0 +1,16 @@
+﻿@model ModalViewModel
+    <div class="modal fade" id="pop-up-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@Model.Title</h5>
+                </div>
+                <div class="modal-body">
+                    <p>@Model.Content</p>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
