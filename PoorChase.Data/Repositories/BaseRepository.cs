@@ -12,7 +12,10 @@ namespace PoorChase.Data
     {
         protected readonly DataContext _context;
 
-        public BaseRepository() => _context = new DataContext();
+        public BaseRepository()
+        {
+            _context = new DataContext();
+        }
 
         public abstract void Add(TEntity entity);
 

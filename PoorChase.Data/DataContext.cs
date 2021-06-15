@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using PoorChase.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,6 @@ namespace PoorChase.Data
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("Data Source=DESKTOP-QOG59O9;Initial Catalog=PoorChaseDB;Integrated Security=True");
-            optionsBuilder.EnableSensitiveDataLogging();
         }
     }
 }
